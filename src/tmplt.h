@@ -1,9 +1,8 @@
 #ifndef TMPLT_TMPLT_H
 #define TMPLT_TMPLT_H
 #include "inja.hpp"
-#include <string>
 #include <sstream>
-#include <set>
+#include <string>
 
 namespace tmplt {
 constexpr int VERSION_MAJOR = 0;
