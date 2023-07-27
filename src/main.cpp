@@ -1,6 +1,7 @@
 #include "CLI11.hpp"
 #include "inja.hpp"
 #include "tmplt.h"
+#include "variable_visitor.h"
 #include <filesystem>
 #include <fstream>
 #include <iostream>
