@@ -4,6 +4,7 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include <set>
 
 namespace tmplt {
 constexpr int VERSION_MAJOR = 0;
@@ -23,7 +24,7 @@ inline std::string version() {
 
 class VariableVisitor : public inja::NodeVisitor {
 private:
-  std::vector<std::string> variables_;
+  std::set<std::string> variables_;
 
   void visit(const inja::BlockNode &node) {
     for (const auto &n : node.nodes) {
@@ -33,7 +34,7 @@ private:
   void visit(const inja::TextNode &) {}
   void visit(const inja::ExpressionNode &) {}
   void visit(const inja::LiteralNode &) {}
-  void visit(const inja::DataNode &n) { variables_.push_back(n.name); }
+  void visit(const inja::DataNode &n) { variables_.insert(n.name); }
 
   void visit(const inja::FunctionNode &node) {
     for (const auto &n : node.arguments) {
@@ -71,7 +72,7 @@ private:
   void visit(const inja::SetStatementNode &) {}
 
 public:
-  const std::vector<std::string> &variables() const { return variables_; }
+  const decltype(variables_) &variables() const { return variables_; }
 };
 } // namespace tmplt
 
