@@ -1,3 +1,5 @@
+#ifndef TMPLT_VARIABLE_VISITOR_H
+#define TMPLT_VARIABLE_VISITOR_H
 #include "inja.hpp"
 #include <set>
 
@@ -55,3 +57,5 @@ public:
   const decltype(variables_) &variables() const { return variables_; }
 };
 } // namespace tmplt
+
+#endif
