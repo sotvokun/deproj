@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <set>
 
 std::string readFileContent(const std::string &path);
 void writeFileContent(const std::string &path, const std::string &content);
@@ -37,7 +38,9 @@ int main(int argc, const char *argv[]) {
 
   std::filesystem::path inputPath(opt.inputTemplate);
   std::filesystem::path outputPath = opt.outputPath;
-  outputPath /= inputPath.stem();
+  if (std::filesystem::is_directory(outputPath)) {
+    outputPath /= inputPath.filename();
+  }
 
   auto templateContent = readFileContent(opt.inputTemplate);
   auto result =
